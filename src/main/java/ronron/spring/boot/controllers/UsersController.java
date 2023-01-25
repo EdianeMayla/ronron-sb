@@ -13,7 +13,7 @@ import ronron.spring.boot.services.UserService;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/userscreator")
+@RequestMapping("/userscreator")
 public class UsersController {
 
 	@Autowired
@@ -21,25 +21,14 @@ public class UsersController {
 
 	@PostMapping
 	@PutMapping
-	public  @ResponseBody Users newUser(@Valid Users user) {
-          return userService.save(user);
+	public @ResponseBody Users newUser(@Valid Users user) {
+		return userService.save(user);
 	}
-	
-	
+
+
 	@GetMapping("/buscar")
 	public Iterable<Users> obterUsuario() {
-		return userService.obterUsuarios();
+		return userService.getUsers();
 	}
-	
-//	@GetMapping("/{id}")
-//	public Users obterUsuarioPorId1(@PathVariable int id) {
-//		return new Users(id, "Maria", "987.654.321-00");
-//	}
-	
-//	@GetMapping
-//	public Users obterUsuarioPorId2(
-//			@RequestParam(name = "id") int id) {
-//		return new Users(id, "Joao Augusto", "111.222.333-44");
-//	}
 
 }

@@ -38,10 +38,9 @@ public class Users implements UserDetails {
 	
 	public Users() {
 	}
-	
-	
-	@OneToMany//(mappedBy = "user")
-	@JoinColumn(name = "user_id")
+
+	@OneToMany
+	@JoinColumn(name = "user")
     private List<Animals> animal;
 
 	public List<Animals> getAnimal() {
@@ -102,33 +101,27 @@ public class Users implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		return Collections.emptyList();
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
-	
-	
+
 }

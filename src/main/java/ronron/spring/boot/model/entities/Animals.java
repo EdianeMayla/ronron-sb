@@ -1,11 +1,15 @@
 package ronron.spring.boot.model.entities;
 
+import ronron.spring.boot.model.enuns.AnimalType;
+import ronron.spring.boot.model.enuns.Gender;
+import ronron.spring.boot.model.enuns.Situation;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Animals {
@@ -13,59 +17,59 @@ public class Animals {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-    @NotBlank
 	private String name;
-    
-    @NotBlank
-	private String type;
-    
-    @NotBlank
-	private String gender;
-    
-    @NotBlank
+	@Enumerated(EnumType.STRING)
+	private AnimalType type;
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
 	private String collors;
-    
-    @NotBlank
 	private String date;
-    
-    @NotBlank
 	private String tutorname;
-    
-    @NotBlank
 	private String tutorphone;
-    
-    @NotBlank
-	private String found;
-    
-    @NotBlank
+	private Boolean solved;
 	private String reward;
-
 	private Double price;
-
     private String observations;
-    
-    @ManyToOne
+	@Enumerated(EnumType.STRING)
+	private Situation situation;
+
+    @ManyToOne //(fetch = FetchType.EAGER)
     private Users user;
     
     public Animals() {
 	}
-    
-	
-//    @Min(0)
-//	private double preco;
-//	
-//    @Min(0)
-//    @Max(1)
-//	private double desconto;
-	
 
-	public int getId() {
+	public Animals(Integer id, String name, AnimalType type, Gender gender, String collors, String date, String tutorname, String tutorphone, Boolean found, String reward, Double price, String observations, Situation situation, Users user) {
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.gender = gender;
+		this.collors = collors;
+		this.date = date;
+		this.tutorname = tutorname;
+		this.tutorphone = tutorphone;
+		this.solved = found;
+		this.reward = reward;
+		this.price = price;
+		this.observations = observations;
+		this.situation = situation;
+		this.user = user;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
 	}
 
 	public String getName() {
@@ -76,11 +80,11 @@ public class Animals {
 		this.name = name;
 	}
 
-	public String getType() {
+	public AnimalType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(AnimalType type) {
 		this.type = type;
 	}
 
@@ -116,13 +120,12 @@ public class Animals {
 		this.tutorphone = tutorphone;
 	}
 
-	public String getFound() {
-		return found;
+	public Boolean getSolved() {
+		return solved;
 	}
 
-
-	public void setFound(String found) {
-		this.found = found;
+	public void setSolved(Boolean solved) {
+		this.solved = solved;
 	}
 
 	public String getReward() {
@@ -149,14 +152,21 @@ public class Animals {
 		this.observations = observations;
 	}
 
-	public String getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
-	
+
+	public Situation getSituation() {
+		return situation;
+	}
+
+	public void setSituation(Situation situation) {
+		this.situation = situation;
+	}
 }
 
 

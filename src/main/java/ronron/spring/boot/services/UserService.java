@@ -21,7 +21,7 @@ public class UserService {
         return user;
     }
 
-    public Iterable<Users> obterUsuarios() {
+    public Iterable<Users> getUsers() {
         return usersRepository.findAll();
     }
 }

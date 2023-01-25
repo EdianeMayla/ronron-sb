@@ -22,13 +22,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
-	
+
+	private String[] WHITE_LIST = new String[]{
+			"/api/userscreator","/api/animals/perdidos","/filtrar"
+	};
 	
 	@Override
 	protected void configure (HttpSecurity http) throws Exception {
 	  http.csrf().disable();
 		http.authorizeRequests()
-		.antMatchers("/api/userscreator").permitAll()
+		.antMatchers(WHITE_LIST).permitAll()
 		.anyRequest().authenticated()
 		.and().httpBasic();
 	}
